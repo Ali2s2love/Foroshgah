@@ -32,5 +32,12 @@ public class ProductsController : ControllerBase
         return await _context.Products.FindAsync(id);
     }
 
+    [HttpGet("{type}")]
+    public async Task<ActionResult<List<Product>>> GetProductByType(string type)
+    {
+        var list= await _context.Products.Where(p=>p.Type==type).ToListAsync();
+        return Ok(list);
+    }
+
 
 }
